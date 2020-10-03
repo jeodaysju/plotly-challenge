@@ -24,12 +24,14 @@ function DrawBubbleChart(sampleID)
             type: "scatter",
             mode: "markers",
             marker: {
+                color: otu_ids,
+                opacity: [1, 0.8, 0.6, 0.4],
                 size: sample_values
             },
             text: otu_labels
         };
         var bubbleLayout = {
-            title: "Top 10 Bacteria Cultures Found",
+            title: "Sample Bacteria Cultures Found",
             margin:{t: 30, l: 150}
         };
         
