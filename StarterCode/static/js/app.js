@@ -1,44 +1,43 @@
 // Some of the code was derived from office hours and working together on process
 
 // function to draw the bubble chart
-// function DrawBubbleChart(sampleID)
-// {
-//     // console.log(`DrawBubbleChart(${sampleID})`);
-//     // Load the data and then ...
-//     d3.json("samples.json").then((data) => {
+function DrawBubbleChart(sampleID)
+{
+    // console.log(`DrawBubbleChart(${sampleID})`);
 
-//         // Get the names
-//         var sampleNames = data.names;
+    d3.json("samples.json").then((data) => {
 
-//         var samples = data.samples;
-//         var resultArray = samples.filter(s => s.id == sampleID);
-//         var result = resultArray[0];
+        // Get the names
+        var sampleNames = data.names;
 
-//         var otu_ids = result.otu_ids;
-//         var otu_labels = result.otu_labels;
-//         var sample_values = result.sample_values;
+        var samples = data.samples;
+        var resultArray = samples.filter(s => s.id == sampleID);
+        var result = resultArray[0];
 
-//         var bubbleData = {
-//             x: otu_ids,
-//             y: sample_values,
-//             type: "scatter",
-//             mode: "markers",
-//             marker: {
-//                 size: sample_values,
-//                 sizemode: 'area',
-//                 color:
-//             },
-//             text: otu_labels
-//         }
+        var otu_ids = result.otu_ids;
+        var otu_labels = result.otu_labels;
+        var sample_values = result.sample_values;
 
-//         var bubbleLayout = {
-//             title: "Top 10 Bacteria Cultures Found",
-//             margin:{t: 30, l: 150}
-//         }
+        var bubbleData = {
+            x: otu_ids,
+            y: sample_values,
+            type: "scatter",
+            mode: "markers",
+            marker: {
+                size: sample_values
+            },
+            text: otu_labels
+        };
+        var bubbleLayout = {
+            title: "Top 10 Bacteria Cultures Found",
+            margin:{t: 30, l: 150}
+        };
         
-//         Plotly.newPlot("scatter", [bubbleData], bubbleLayout)
-//         });
-// }
+        Plotly.newPlot("bubble", [bubbleData], bubbleLayout)
+
+    });
+ 
+}
 
 // function to draw the bar chart 
 function DrawBarChart(sampleID)
@@ -92,8 +91,6 @@ function ShowMetadata(sampleID)
         panel.html("");
 
         Object.entries(result).forEach(([key, value]) => {
-            // var textToShow = 'Shirley was here!';
-
             panel.append("h6").text(`${key}: ${value}`);
 
         });
@@ -136,7 +133,7 @@ function InitDashboard()
 
         // Draw Graphs
         DrawBarChart(sampleID);
-        // DrawBubbleChart(sampleID);
+        DrawBubbleChart(sampleID);
 
         // Display metadata
         ShowMetadata(sampleID);
