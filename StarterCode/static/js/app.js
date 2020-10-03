@@ -108,6 +108,7 @@ function optionChanged(newSampleID)
     DrawBarChart(newSampleID);
     DrawBubbleChart(newSampleID);
     ShowMetadata(newSampleID);
+    // DrawGaugeChart(newSampleID);
 }
 
 // develop the init dashboard to initialize the page
@@ -136,6 +137,7 @@ function InitDashboard()
         // Draw Graphs
         DrawBarChart(sampleID);
         DrawBubbleChart(sampleID);
+        // DrawGaugeChart(sampleID);
 
         // Display metadata
         ShowMetadata(sampleID);
